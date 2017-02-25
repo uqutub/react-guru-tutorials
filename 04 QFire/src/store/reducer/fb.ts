@@ -10,19 +10,22 @@ interface IAction {
 }
 
 export function fbReducer(state = INITIAL_STATE, action: IAction) {
+    let newState = null;
     switch (action.type) {
+        
         case FbAction.ADD:
-            let newState = [...state.users];
+            newState = [...state.users];
             newState.push(action.payload);
-            return Object.assign({}, state, {users: newState});
+            return Object.assign({}, state, { users: newState });
+
         case FbAction.UPDATE:
-        console.info('update')
-            // return Object.assign({}, state, { users: action.payload });
+            console.info('catch action from epic: update', action.payload)
             return Object.assign({}, state);
+
         case FbAction.DEL:
-        console.info('del')
-            // return Object.assign({}, state, { users: action.payload });
+            console.info('catch action from epic: del', action.payload)
             return Object.assign({}, state);
+
         default:
             return state;
     }

@@ -19,7 +19,6 @@ ReactDOM.render(
                 <Route path="contact" component={Contact} />
             </Route>
         </Router>
-    </Provider>
-    ,
+    </Provider>,
     document.getElementById('root')
 );

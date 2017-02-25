@@ -8,7 +8,6 @@ class FbEpic {
 
     getUserData = (action$: ActionsObservable<any>) =>
         action$.ofType(FbAction.SYNCUSERS)
-        // .do(x => console.log('xxxxxxxxxxx ', x))
             .switchMap(({payload}) => {
                 return qFire.list('users')
                     .switchMap((obj) => {
@@ -18,13 +17,13 @@ class FbEpic {
                                 payload: obj
                             });
                         } else if (obj && obj['child_changed']) {
-                            console.log('onChildChnaged ', obj)
+                            // console.log('onChildChnaged ', obj)
                             return Observable.of({
                                 type: FbAction.UPDATE,
                                 payload: obj
                             });
                         } else if (obj && typeof (obj) == 'string') {
-                            console.log('onDelete ', obj)
+                            // console.log('onDelete ', obj)
                             return Observable.of({
                                 type: FbAction.DEL,
                                 payload: obj
